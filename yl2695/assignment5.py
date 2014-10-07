@@ -77,10 +77,6 @@ def main():
         else:
             break
 
-# if __name__ == '__main__':
-    # main()
+if __name__ == '__main__':
+    main()
 
-# interval_list = [interval('[1,5]'), interval('[2,6)'), interval('(8,10]'), interval('[8,18]')]
-# print mergeOverlapping(interval_list)
-list_new = [interval('[1,3]'), interval('[6,9]')]
-print insert(list_new, interval('[2,5]'))
