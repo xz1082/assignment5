@@ -5,12 +5,12 @@ class interval():
         for letter in string:
             if letter == ',':
                 index = string.index(letter)
-                self.lower_bound = int(string[1:index])
-                self.upper_bound = int(string[index+1:-1])
+                self.lower_bound_origin = int(string[1:index])
+                self.upper_bound_origin = int(string[index+1:-1])
         if self.low == '(':
-            self.lower_bound += 1
+            self.lower_bound = self.lower_bound_origin + 1
         if self.upper == ')':
-            self.upper_bound -= 1
+            self.upper_bound = self.upper_bound_origin - 1
         if self.lower_bound > self.upper_bound:
             raise Exception("invalid value")   
     
@@ -19,7 +19,7 @@ class interval():
 
 
 def mergeIntervals(int1, int2):
-    if int1.upper_bound < int2.lower_bound or int2.upper_bound < int1.lower_bound:
+    if int1.upper_bound < (int2.lower_bound - 1) or int2.upper_bound < (int1.lower_bound - 1):
         raise Exception("Can't merge")
     lower_bound = min(int1.lower_bound, int2.lower_bound)
     upper_bound = max(int1.upper_bound, int2.upper_bound)
@@ -77,5 +77,10 @@ def main():
         else:
             break
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+    # main()
+
+# interval_list = [interval('[1,5]'), interval('[2,6)'), interval('(8,10]'), interval('[8,18]')]
+# print mergeOverlapping(interval_list)
+list_new = [interval('[1,3]'), interval('[6,9]')]
+print insert(list_new, interval('[2,5]'))
