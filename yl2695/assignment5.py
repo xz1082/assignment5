@@ -1,5 +1,6 @@
 class interval():
     def __init__(self, string):
+        self.string = string
         self.low = string[0]
         self.upper = string[-1]
         for letter in string:
@@ -9,21 +10,40 @@ class interval():
                 self.upper_bound_origin = int(string[index+1:-1])
         if self.low == '(':
             self.lower_bound = self.lower_bound_origin + 1
+        else:
+            self.lower_bound = self.lower_bound_origin
         if self.upper == ')':
             self.upper_bound = self.upper_bound_origin - 1
+        else:
+            self.upper_bound = self.upper_bound_origin
         if self.lower_bound > self.upper_bound:
             raise Exception("invalid value")   
     
     def __repr__(self):
-        return '[' + str(self.lower_bound) + ',' + str(self.upper_bound) + ']'
-
+        return self.string
 
 def mergeIntervals(int1, int2):
+    target_string = ''
     if int1.upper_bound < (int2.lower_bound - 1) or int2.upper_bound < (int1.lower_bound - 1):
         raise Exception("Can't merge")
-    lower_bound = min(int1.lower_bound, int2.lower_bound)
-    upper_bound = max(int1.upper_bound, int2.upper_bound)
-    target_string = '[' + str(lower_bound) + ',' + str(upper_bound) + ']'
+    if int1.lower_bound < int2.lower_bound:
+        target_string = target_string + int1.low + str(int1.lower_bound_origin) + ','
+    elif int1.lower_bound == int2.lower_bound:
+        if int1.lower_bound_origin <= int2.lower_bound_origin:
+            target_string = target_string + int1.low + str(int1.lower_bound_origin) + ','
+        else:
+            target_string = target_string + int2.low + str(int2.lower_bound_origin) + ','
+    else:
+        target_string = target_string + int2.low + str(int2.lower_bound_origin) + ','
+    if int1.upper_bound < int2.upper_bound:
+        target_string = target_string + str(int2.upper_bound_origin) + int2.upper
+    elif int1.upper_bound == int2.upper_bound:
+        if int1.upper_bound_origin >= int2.upper_bound_origin:
+            target_string = target_string + str(int1.upper_bound_origin) + int1.upper
+        else:
+            target_string = target_string + str(int2.upper_bound_origin) + int2.upper
+    else:
+        target_string = target_string + str(int1.upper_bound_origin) + int1.upper
     merged = interval(target_string)
     return merged
 
@@ -78,5 +98,4 @@ def main():
             break
 
 if __name__ == '__main__':
-    main()
-
+     main()
