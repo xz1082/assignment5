@@ -142,6 +142,7 @@ def getUserList() :
     while inputInterval != 'quit':     
         
         try:
+            if inputInterval == '': raise Exception
         
             outList = insert(outList,interval(inputInterval))
             print outList
@@ -149,7 +150,6 @@ def getUserList() :
         except:
         
             print 'Invalid Interval 3'
-            print outList
         
         inputInterval = raw_input('Interval? [TYPE quit TO EXIT] ')
 
