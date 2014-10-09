@@ -2,9 +2,7 @@
 
 @author: jiminzi
 '''
-'''
-For this assignment, when insert [24,24], I do not think it has overlap between [24,24] and [15,23]
-'''
+
 import re
 #q1
 class Interval():
@@ -52,8 +50,16 @@ def mergeIntervals(int1,int2):
     #int1_rightmark=int1.right_bound_mark
     #int2_leftmark=int2.left_bound_mark
     #int2_rightmark=int2.right_bound_mark
-    while min(int1.upbound,int2.upbound) < max(int1.lowbound,int2.lowbound):
-           raise Exception('invalid (no overlap)')  
+    while (int1.upperbounds<(int2.lowerbounds-1)) or int2.upperbounds<(int1.lowerbounds-1):
+        raise Exception('invalid (no overlap)') 
+         # min(int1.upbound,int2.upbound) < max(int1.lowbound,int2.lowbound):
+          # raise Exception('invalid (no overlap)')  
+
+    #if int1.lowerbounds == int2.lowerbounds:
+     #   if int1.lowbound <= int2.lowbound:
+      #      newlower=int(min(int1.lowbound,int2.lowbound,int1.upbound,int2.upbound))
+       #     newhigher=int(max(int1.lowbound,int2.lowbound,int1.upbound,int2.upbound))
+  
     if int(min(int1.upbound,int2.upbound))==int(max(int1.lowbound,int2.lowbound)):
             mergeIn=''
             newlower=int(min(int1.lowbound,int2.lowbound,int1.upbound,int2.upbound))
@@ -70,7 +76,6 @@ def mergeIntervals(int1,int2):
                 raise Exception('invalid') 
             mergeIn=mergeIn+'{}{},{}{}'.format(int1.left_bound_mark,newlower,newhigher,int2.right_bound_mark)
             newmerge = Interval(mergeIn)
-    
     else:
         mergeIn = ''
         newlower=int(min(int1.lowbound,int2.lowbound,int1.upbound,int2.upbound))
