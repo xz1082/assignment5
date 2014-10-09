@@ -9,6 +9,7 @@ class interval:
     boundDef = {'(': 'exclusive', ')': 'exclusive', '[': 'inclusive', ']': 'inclusive'}
     
     # Constructor
+    # How do you do for empty? interval()
 
     def __init__(self,inStr):
         
@@ -68,7 +69,6 @@ def mergeIntervals(interval1,interval2):
         upperInterval = interval1
 
     out = interval('')
-
         
     # Merge 
     if lowerInterval.max < upperInterval.min - 1:
@@ -127,18 +127,35 @@ def insert(intervalList, newInterval):
     return outList
     
 ###############################################################################
-# Functions for multiple intervals                                         
+# Prompts users for intervals                                    
 ###############################################################################
     
 def getUserList() :
 
     inList = raw_input('List of intervals? ')
     
-    splitInList = inList.split(', ')
-    outList = [interval(x) for x in splitInList]
+    isCorrect = False
+    
+    # Check initial input
+    while isCorrect == False:
+    
+        try:
+        
+            splitInList = inList.split(', ')
+            outList = [interval(x) for x in splitInList]
+            
+            isCorrect = True
+            
+        except:
+            
+            isCorrect = False
+            print 'Please make your input of the form [a,b], [c,d)], ,,, , [z,y]'
+            inList = raw_input('List of intervals? ')
+            
     
     inputInterval = raw_input('Interval? [TYPE quit TO EXIT] ')
     
+    # Check intervals
     while inputInterval != 'quit':     
         
         try:
@@ -149,7 +166,7 @@ def getUserList() :
         
         except:
         
-            print 'Invalid Interval 3'
+            print 'Invalid Interval'
         
         inputInterval = raw_input('Interval? [TYPE quit TO EXIT] ')
 
