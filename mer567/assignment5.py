@@ -15,7 +15,7 @@ class Interval:
 		string2 = string1.replace(" ", "")
 	 	parts = string2.split(",")
                 if len(parts) != 2 :
-                        print "length error"
+                	raise Myexception()       
                 low_r = int(parts[0][1:])
                 high_r = int(parts[1][:-1])
 
