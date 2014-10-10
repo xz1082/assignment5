@@ -3,7 +3,7 @@ Created on Oct 9, 2014
 
 @author: ds-ga-1007
 '''
-
+#QUESTION 1
 class interval:
     def __init__(self,str):
         self.str = str
@@ -28,6 +28,7 @@ class interval:
     def __repr__(self):
         return self.str
 
+#QUESTION 2
 def mergeIntervals(int1,int2):
     x = int1.range_of_int()   
     y = int2.range_of_int()
@@ -55,6 +56,7 @@ def mergeIntervals(int1,int2):
     merge_int = interval(merge)
     return merge_int
 
+#QUESTION 3
 def merged(int1,int2):
     if int1.lower_bound <= int2.lower_bound:
         x = int1
@@ -77,10 +79,12 @@ def mergeOverlapping(intlist):
     mergeO.append(temp)
     return mergeO
 
+#QUESTION 4
 def insert(intlist, newint):
     intlist.append(newint)
     return mergeOverlapping(intlist)
 
+#QUESTION 5
 def main():
     str = raw_input('List of intervals?')
     string = str.split(', ')
