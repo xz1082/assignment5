@@ -44,7 +44,7 @@ def mergeIntervals(int1,int2):
         else :
             merge = int2.lower + str(int2.l) + ','
         if int1.upper_bound > int2.upper_bound:
-            merge = merge + str(int1.u) + int1.upper_bound
+            merge = merge + str(int1.u) + int1.upper
         elif int1.upper_bound == int2.upper_bound:
             if int1.u > int2.u:
                 merge = merge + str(int1.u) + int1.upper
@@ -56,7 +56,7 @@ def mergeIntervals(int1,int2):
     return merge_int
 
 def merged(int1,int2):
-    if int1.lower_bound >= int2.lower_bound:
+    if int1.lower_bound <= int2.lower_bound:
         x = int1
         y = int2
     else:
