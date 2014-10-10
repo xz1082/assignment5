@@ -10,7 +10,10 @@ class invalidMerge(Error):
 class interval(object):
 				def __init__(self,intRange):
 
-								self.orig = intRange
+								
+                                                                intRange = intRange.replace(" ","")
+
+                                                                self.orig = intRange
 
 								if intRange[0] == "[":
 												self.lowInclusive = 0
